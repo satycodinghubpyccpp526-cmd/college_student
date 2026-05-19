@@ -47,16 +47,26 @@
             <h3>{{ tip[4] }}</h3>
 
             <p>{{ tip[5] }}</p>
+            
+            <p>
+                <b>Senior:</b>{{tip[1]}}
+            </p>
+            <p>
+                <b>College:</b>{{tip[2]}}
+            </p>
+            <p>
+                <b>Branch:</b>{{tip[3]}}
+            </p>
+            <p>
+                <b>Urgency:</b>{{tip[6]}}
+            </p>
+            <p>
+                <b>Credibility:</b>{{tip[7]}}
+            </p>
 
-            <small>
-                {{ tip[1] }} |
-                {{ tip[2] }} |
-                {{ tip[3] }}
-            </small>
-
-            <br>
-
-            <span class="urgency">{{ tip[6] }}</span>
+            <a href="/verify/{{tip[0]}}">
+                <button>Verify👍🏻</button>
+            </a>
 
         </div>
 
