@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>College Intelligence Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>College Intelligence Platform</h1>
+
+        <form action="/add_tip" method="POST">
+
+            <input type="text" name="senior_name" placeholder="Senior Name" required>
+
+            <input type="text" name="college" placeholder="College" required>
+
+            <input type="text" name="branch" placeholder="Branch" required>
+
+            <input type="text" name="title" placeholder="Title" required>
+
+            <textarea name="description" placeholder="Description" required></textarea>
+
+            <select name="urgency">
+
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+
+            </select>
+
+            <button type="submit">Add Tip</button>
+
+        </form>
+
+        <hr>
+
+        <h2>Latest Tips</h2>
+
+        {% for tip in tips %}
+
+        <div class="card">
+
+            <h3>{{ tip[4] }}</h3>
+
+            <p>{{ tip[5] }}</p>
+
+            <small>
+                {{ tip[1] }} |
+                {{ tip[2] }} |
+                {{ tip[3] }}
+            </small>
+
+            <br>
+
+            <span class="urgency">{{ tip[6] }}</span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>

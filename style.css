@@ -1,0 +1,50 @@
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+}
+
+.container {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.urgency {
+    color: red;
+    font-weight: bold;
+}
