@@ -14,7 +14,7 @@ def init_db():
               description TEXT,
               urgency TEXT,
               credibility INTEGER DEFAULT 0,
-              create_at TEXT)''')
+              created_at TEXT)''')
     conn.commit()
     conn.close()
     
@@ -32,22 +32,46 @@ def home():
     conn.close()
 
     return render_template("index.html", tips=tips)
-@app.route("/add_tip",methods = ["POST"])
+@app.route("/add_tip", methods=["POST"])
 def add_tip():
-    data = request.json
+
+    senior_name = request.form["senior_name"]
+    college = request.form["college"]
+    branch = request.form["branch"]
+    title = request.form["title"]
+    description = request.form["description"]
+    urgency = request.form["urgency"]
+
     conn = sqlite3.connect("college_intel.db")
     c = conn.cursor()
-    c.execute('''INSERT INTO tips(senior_name, college, branch,title,description,urgency, created_at) VALUES(?, ?, ?, ?, ?, ?, ?, ?)''',
-              (data["senior_name"],
-               data["college"],
-               data["branch"],
-               data["title"],
-               data["description"],
-               data["urgency"],
-               datetime.now().strftime("%Y-%m-%d %H: %M: %S")))
+
+    c.execute("""
+    INSERT INTO tips
+    (senior_name, college, branch, title, description, urgency, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (
+        senior_name,
+        college,
+        branch,
+        title,
+        description,
+        urgency,
+        datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ))
+
     conn.commit()
     conn.close()
-    return jsonify({"message": "Tip added successfully"})
+
+    return redirect("/")
+@app.route("/verify/<int:id>")
+def verify(id):
+    conn = sqlite3.connect("college_intel.db")
+    c = conn.cursor()
+    c.execute("UPDATE tips SET credibility = credibility + 1 WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+    
+    return redirect("/")
 @app.route("/tips", methods = ["GET"])
 def get_tips():
     conn = sqlite3.connect("college_intel.db")
