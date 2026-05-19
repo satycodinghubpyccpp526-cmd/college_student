@@ -11,6 +11,34 @@
     <div class="container">
 
         <h1>College Intelligence Platform</h1>
+        {% if session.user %}
+        <h3>Welcome {{session.user}}</h3>
+        <a href="/logout">
+            <button>Logout</button>
+        </a>
+        {% endif %}
+        <a href="/signup">
+            <button>Signup</button>
+        </a>
+        <a href="/login">
+            <button>Login</button>
+        </a>
+        <form method = "GET">
+            <input type = "text" name = "college" placeholder = "College">
+            <input type = "text" name = "branch" placeholder = "Branch">
+            <select name="urgency">
+
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+
+            </select>
+
+            <button type="submit">Search</button>
+
+        </form>
+
+        <hr>
 
         <form action="/add_tip" method="POST">
 
